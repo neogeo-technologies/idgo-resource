@@ -1,2 +1,1 @@
-# idgo-resource
-
+# WIP: IDGO App Resource

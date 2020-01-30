@@ -1,0 +1,3 @@
+<html><body>{% load resource_extras %}{% for file in files %}
+<span>{{ forloop.counter }} <a href="{{ file.href }}" target="_blank">{{ file.href }}</a> [{{ file.content_type }} {{file.size|format_bytes }}]</span>{% endfor %}
+</ul></body></html>

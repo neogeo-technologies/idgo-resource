@@ -1,0 +1,29 @@
+<div>
+  <h3>Informations concernant la ressource</h3>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>{{ resource.title }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Description</th>
+        <td>{{ resource.description|default:"<em>Néant</em>" }}</td>
+      </tr>
+      <tr>
+        <th>Langue</th>
+        <td>{{ resource.language }}</td>
+      </tr>
+      <tr>
+        <th>Type de resource</th>
+        <td>{{ resource.resource_type }}</td>
+      </tr>
+      <tr>
+        <th>Format du fichier téléversé</th>
+        <td>{{ resource.format_type }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

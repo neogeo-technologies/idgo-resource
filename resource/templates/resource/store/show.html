@@ -1,0 +1,27 @@
+{% extends "idgo_admin/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block breadcrumb_content %}
+<ol class="breadcrumb">
+  {% include "resource/breadcrumb_base.html" %}
+  <li class="active">
+    {{ resource.title_overflow }}
+  </li>
+</ol>
+{% endblock breadcrumb_content %}
+
+{% block main_content %}
+{% include "idgo_admin/alert_messages.html" %}
+<div class="well">
+  {% include "resource/store/actions.html" %}
+  <br />
+  {% include "resource/show.html" %}
+  <br />
+  <hr />
+  <br />
+  {% include "resource/store/extras.html" %}
+  <br />
+  {% include "resource/store/actions.html" %}
+</div>
+{% endblock main_content %}
