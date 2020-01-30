@@ -1,0 +1,26 @@
+{% extends "idgo_admin/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block breadcrumb_content %}
+<ol class="breadcrumb">
+  {% include "resource/breadcrumb_base.html" %}
+  <li>
+    <strong>{{ resource.title_overflow }}</strong>
+  </li>
+  <li>
+    <strong>Mettre à jour le répertoire de données</strong>
+  </li>
+</ol>
+{% endblock breadcrumb_content %}
+
+{% block main_content %}
+<form method="post" action="{% url 'resource:update_resource_store' dataset_id=dataset.id resource_id=resource.id %}" enctype="multipart/form-data" class="well">
+  {% csrf_token %}
+  {% bootstrap_field form.file_path %}
+  <div class="buttons-on-the-right-side">
+    <a class="btn btn-default" href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources">Annuler</a>
+    <button type="submit" class="btn btn-primary">Enregistrer le fichier</button>
+  </div>
+</form>
+{% endblock main_content %}

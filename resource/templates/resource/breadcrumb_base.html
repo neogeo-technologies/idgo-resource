@@ -1,0 +1,12 @@
+<li>
+  <span class="glyphicon glyphicon-home"></span>
+</li>
+<li>
+  Jeux de données
+</li>
+<li>
+  <a href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#dataset">{{ dataset.title_overflow }}</a>
+</li>
+<li>
+  <a href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources">Ressources</a>
+</li>

@@ -1,0 +1,56 @@
+<div class="buttons-on-the-right-side">
+  <button type="button" class="btn btn-danger left" data-toggle="modal" data-target="#modal-resource-delete">Supprimer</button>
+  <a class="btn btn-default" href="{{ resource.ckan_url }}" target="_blank">Voir la fiche CKAN</a>
+  <a class="btn btn-primary" href="{% url 'resource:update_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">Mettre à jour le répertoire</a>
+  <a class="btn btn-primary" href="{% url 'resource:edit_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">Éditer les informations</a>
+</div>
+
+<div class="modal fade" id="modal-resource-delete" tabindex="-1" role="dialog" aria-labelledby="ModalResourceDelete">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Êtes-vous absolument sûr ?</h4>
+      </div>
+      <div class="modal-body">
+        <p>Cette action est irreversible et supprimera <strong>définitivement</strong> la ressource.</p>
+        <p>Pour confirmer votre action, veuillez réécrire le nom complet de la ressource à supprimer :</p>
+        <form>
+          <input id="input-resource-delete" type="text" class="form-control" placeholder="Nom de la ressource à supprimer"></input>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default left" data-dismiss="modal">Annuler</button>
+        <a id="button-resource-delete" class="btn btn-danger disabled" disable href="{% url 'resource:delete_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">
+          Oui, supprimer définitivement cette ressource
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+
+  const $button = $('#button-resource-delete');
+  const $input = $('#input-resource-delete');
+  const $modal = $('#modal-resource-delete').modal({ 'backdrop': 'static', 'show': false });
+
+  $input.on('input', function(evt) {
+    evt.preventDefault();
+    if ($(this).val().trim() === `{{ resource.title }}`) {
+      $button.removeClass('disabled').prop('disable', false);
+    } else {
+      $button.addClass('disabled').prop('disable', true);
+    };
+  });
+
+  $modal.on('hidden.bs.modal', function(evt) {
+    evt.preventDefault();
+    $input.val('');
+  });
+
+});
+</script>
