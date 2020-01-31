@@ -21,6 +21,7 @@ from resource.views import DeleteResourceStore
 from resource.views import EditResourceStore
 from resource.views import EmitResourceStore
 from resource.views import GoForResource
+from resource.views import RedirectResource
 from resource.views import ShowDirectoryStorage
 from resource.views import ShowDirectoryStorageGlob
 from resource.views import ShowResourceStore
@@ -28,6 +29,7 @@ from resource.views import UpdateResourceStore
 
 
 urlpatterns = [
+    url('^dataset/(?P<dataset_id>(\d+))/-/resource/$', RedirectResource.as_view(), name='redirect_resource'),
     url('^dataset/(?P<dataset_id>(\d+))/resource/new/$', GoForResource.as_view(), name='go_for_resource'),
 
     # Resource: Store

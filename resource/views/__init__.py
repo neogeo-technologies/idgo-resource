@@ -15,6 +15,7 @@
 
 
 from resource.views.go_for import GoForResource
+from resource.views.resource import RedirectResource
 from resource.views.store import CreateResourceStore
 from resource.views.store import EditResourceStore
 from resource.views.store import EmitResourceStore
@@ -31,6 +32,7 @@ __all__ = [
     EmitResourceStore,
     DeleteResourceStore,
     GoForResource,
+    RedirectResource,
     ShowDirectoryStorage,
     ShowDirectoryStorageGlob,
     ShowResourceStore,
