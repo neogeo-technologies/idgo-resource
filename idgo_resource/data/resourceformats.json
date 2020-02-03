@@ -1,5 +1,5 @@
 [{
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 1,
   "fields": {
     "slug": "csv",
@@ -12,7 +12,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 2,
   "fields": {
     "slug": "xls",
@@ -25,7 +25,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 3,
   "fields": {
     "slug": "html",
@@ -38,7 +38,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 4,
   "fields": {
     "slug": "pdf",
@@ -51,7 +51,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 5,
   "fields": {
     "slug": "xml",
@@ -64,7 +64,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 6,
   "fields": {
     "slug": "zip",
@@ -77,7 +77,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 7,
   "fields": {
     "slug": "tiff",
@@ -90,7 +90,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 8,
   "fields": {
     "slug": "json",
@@ -103,7 +103,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 9,
   "fields": {
     "slug": "wms",
@@ -116,7 +116,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 10,
   "fields": {
     "slug": "jpg",
@@ -129,7 +129,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 11,
   "fields": {
     "slug": "wcs",
@@ -142,7 +142,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 12,
   "fields": {
     "slug": "txt",
@@ -155,7 +155,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 13,
   "fields": {
     "slug": "kml",
@@ -168,7 +168,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 14,
   "fields": {
     "slug": "wfs",
@@ -181,7 +181,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 15,
   "fields": {
     "slug": "png",
@@ -194,7 +194,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 16,
   "fields": {
     "slug": "geojson",
@@ -207,7 +207,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 17,
   "fields": {
     "slug": "ods",
@@ -220,7 +220,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 21,
   "fields": {
     "slug": "gpkg",
@@ -233,7 +233,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 22,
   "fields": {
     "slug": "doc",
@@ -246,7 +246,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 23,
   "fields": {
     "slug": "odt",
@@ -259,7 +259,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 24,
   "fields": {
     "slug": "xlxs",
@@ -272,7 +272,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 25,
   "fields": {
     "slug": "docx",
@@ -285,7 +285,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 26,
   "fields": {
     "slug": "pbf",
@@ -298,7 +298,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 27,
   "fields": {
     "slug": "sl3",
@@ -311,7 +311,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 28,
   "fields": {
     "slug": "gpx",
@@ -324,7 +324,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 29,
   "fields": {
     "slug": "geotiff",
@@ -337,7 +337,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 30,
   "fields": {
     "slug": "gtfs",
@@ -350,7 +350,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 31,
   "fields": {
     "slug": "shapezip",
@@ -363,7 +363,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 32,
   "fields": {
     "slug": "ecw",
@@ -376,7 +376,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 34,
   "fields": {
     "slug": "mif-mid-zip",
@@ -389,7 +389,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 37,
   "fields": {
     "slug": "tab-zip",
@@ -402,7 +402,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 38,
   "fields": {
     "slug": "jp2",
@@ -415,7 +415,7 @@
     "is_gis_format": true
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 39,
   "fields": {
     "slug": "QML",
@@ -428,7 +428,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 40,
   "fields": {
     "slug": "LYR",
@@ -441,7 +441,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 41,
   "fields": {
     "slug": "dbf",
@@ -454,7 +454,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 42,
   "fields": {
     "slug": "QLR",
@@ -467,7 +467,7 @@
     "is_gis_format": false
   }
 }, {
-  "model": "resource.resourceformats",
+  "model": "idgo_resource.resourceformats",
   "pk": 43,
   "fields": {
     "slug": "7z",
