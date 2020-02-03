@@ -243,7 +243,7 @@ class CreateResourceStore(View):
             'dataset_id': dataset_id,
             'resource_id': resource.pk
         }
-        url = reverse('resource:show_resource_store', kwargs=url_params)
+        url = reverse('idgo_resource:show_resource_store', kwargs=url_params)
         return HttpResponseRedirect(url)
 
 
@@ -289,7 +289,7 @@ class EditResourceStore(View):
         messages.success(request, msg)
 
         kwargs = {'dataset_id': dataset_id, 'resource_id': resource.pk}
-        url = reverse('resource:show_resource_store', kwargs=kwargs)
+        url = reverse('idgo_resource:show_resource_store', kwargs=kwargs)
         return HttpResponseRedirect(url)
 
 
@@ -345,7 +345,7 @@ class DeleteResourceStore(View):
         resource.delete()
 
         kwargs = {'dataset_id': dataset.id}
-        url = reverse('resource:go_for_resource', kwargs=kwargs)
+        url = reverse('idgo_resource:go_for_resource', kwargs=kwargs)
         return HttpResponseRedirect(url)
 
 
@@ -457,7 +457,7 @@ def save_ckan_resource(instance, with_user=None):
 
     location = os.path.join(DIRECTORY_STORAGE, str(instance.pk))
 
-    base_url = reverse('resource:directory_storage', kwargs={
+    base_url = reverse('idgo_resource:directory_storage', kwargs={
         'dataset_id': instance.dataset.pk,
         'resource_id': instance.pk,
     })
