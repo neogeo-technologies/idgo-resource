@@ -14,7 +14,7 @@
 # under the License.
 
 
-from resource import __version__
+from idgo_resource import __version__
 from pip._internal.req import parse_requirements
 from setuptools import find_packages
 from setuptools import setup

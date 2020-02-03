@@ -8,8 +8,8 @@
         <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
       </th>
       <td>
-        <a href="{% url 'resource:directory_storage' dataset_id=dataset.pk resource_id=resource.pk %}" target="_blank">
-          http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{% url 'resource:directory_storage' dataset_id=dataset.pk resource_id=resource.pk %}</a>
+        <a href="{% url 'idgo_resource:directory_storage' dataset_id=dataset.pk resource_id=resource.pk %}" target="_blank">
+          http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{% url 'idgo_resource:directory_storage' dataset_id=dataset.pk resource_id=resource.pk %}</a>
       </td>
     </tr>
   </tbody>
@@ -30,8 +30,8 @@
       <tr>
         <th scope="row" style="text-align: center;">{{ forloop.counter }}</th>
         <td>
-          <a href="{% url 'resource:directory_storage_glob' dataset_id=dataset.pk resource_id=resource.pk glob_path=file.path %}">
-            http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{% url 'resource:directory_storage_glob' dataset_id=dataset.pk resource_id=resource.pk glob_path=file.path %}
+          <a href="{% url 'idgo_resource:directory_storage_glob' dataset_id=dataset.pk resource_id=resource.pk glob_path=file.path %}">
+            http{% if request.is_secure %}s{% endif %}://{{ request.get_host }}{% url 'idgo_resource:directory_storage_glob' dataset_id=dataset.pk resource_id=resource.pk glob_path=file.path %}
           </a>
         </td>
         <td>

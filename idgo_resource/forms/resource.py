@@ -17,8 +17,8 @@
 from django import forms
 from django.forms.models import ModelChoiceIterator
 
-from resource.models import Resource
-from resource.models import ResourceFormats
+from idgo_resource.models import Resource
+from idgo_resource.models import ResourceFormats
 
 
 class FormatTypeSelect(forms.Select):

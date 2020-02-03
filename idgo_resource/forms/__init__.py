@@ -14,12 +14,12 @@
 # under the License.
 
 
-from resource.forms.resource import ModelResourceForm
-from resource.forms.store import CreateResourceStoreForm
-from resource.forms.store import EditResourceStoreForm
-from resource.forms.store import EmitResourceStoreForm
-from resource.forms.store import ModelResourceStoreForm
-from resource.forms.store import UpdateResourceStoreForm
+from idgo_resource.forms.resource import ModelResourceForm
+from idgo_resource.forms.store import CreateResourceStoreForm
+from idgo_resource.forms.store import EditResourceStoreForm
+from idgo_resource.forms.store import EmitResourceStoreForm
+from idgo_resource.forms.store import ModelResourceStoreForm
+from idgo_resource.forms.store import UpdateResourceStoreForm
 
 
 __all__ = [

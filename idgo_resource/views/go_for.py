@@ -32,8 +32,8 @@ from idgo_admin.shortcuts import get_object_or_404_extended
 from idgo_admin.shortcuts import render_with_info_profile
 from idgo_admin.shortcuts import user_and_profile
 # from idgo_admin.views.dataset import target as datasets_target
-# from resource import logger
-# from resource.models import Resource
+# from idgo_resource import logger
+# from idgo_resource.models import Resource
 
 
 # CKAN_URL = settings.CKAN_URL

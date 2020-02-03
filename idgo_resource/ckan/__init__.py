@@ -14,14 +14,9 @@
 # under the License.
 
 
-default_app_config = 'resource.apps.ResourceConfig'
-__version__ = '0.1.0dev'
+from idgo_resource.ckan.store import synchronize as synchronize_store
 
 
-import logging
-logger = logging.getLogger('glob')
-
-__all__ = [logger]
-
-
-
+__all__ = [
+    synchronize_store,
+]

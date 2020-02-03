@@ -46,13 +46,13 @@ from idgo_admin.models import Dataset
 from idgo_admin.shortcuts import get_object_or_404_extended
 from idgo_admin.shortcuts import render_with_info_profile
 from idgo_admin.shortcuts import user_and_profile
-from resource.forms import CreateResourceStoreForm
-from resource.forms import EditResourceStoreForm
-from resource.forms import EmitResourceStoreForm
-from resource.forms import UpdateResourceStoreForm
-from resource.models import ResourceFormats
-from resource.models import Resource
-from resource.redis_client import Handler as RedisHandler
+from idgo_resource.forms import CreateResourceStoreForm
+from idgo_resource.forms import EditResourceStoreForm
+from idgo_resource.forms import EmitResourceStoreForm
+from idgo_resource.forms import UpdateResourceStoreForm
+from idgo_resource.models import ResourceFormats
+from idgo_resource.models import Resource
+from idgo_resource.redis_client import Handler as RedisHandler
 
 
 CKAN_URL = settings.CKAN_URL

@@ -27,11 +27,11 @@ from django.core.exceptions import ValidationError
 from django import forms
 
 from idgo_admin.utils import readable_file_size
-from resource.forms import ModelResourceForm
-from resource import logger
-from resource.models import ResourceFormats
-from resource.models import Store
-from resource.redis_client import Handler as RedisHandler
+from idgo_resource.forms import ModelResourceForm
+from idgo_resource import logger
+from idgo_resource.models import ResourceFormats
+from idgo_resource.models import Store
+from idgo_resource.redis_client import Handler as RedisHandler
 
 
 DOWNLOAD_SIZE_LIMIT = getattr(settings, 'RESOURCE_STORE_DOWNLOAD_SIZE_LIMIT', 104857600)  # Default:100Mio

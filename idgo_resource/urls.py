@@ -16,16 +16,16 @@
 
 from django.conf.urls import url
 
-from resource.views import CreateResourceStore
-from resource.views import DeleteResourceStore
-from resource.views import EditResourceStore
-from resource.views import EmitResourceStore
-from resource.views import GoForResource
-from resource.views import RedirectResource
-from resource.views import ShowDirectoryStorage
-from resource.views import ShowDirectoryStorageGlob
-from resource.views import ShowResourceStore
-from resource.views import UpdateResourceStore
+from idgo_resource.views import CreateResourceStore
+from idgo_resource.views import DeleteResourceStore
+from idgo_resource.views import EditResourceStore
+from idgo_resource.views import EmitResourceStore
+from idgo_resource.views import GoForResource
+from idgo_resource.views import RedirectResource
+from idgo_resource.views import ShowDirectoryStorage
+from idgo_resource.views import ShowDirectoryStorageGlob
+from idgo_resource.views import ShowResourceStore
+from idgo_resource.views import UpdateResourceStore
 
 
 urlpatterns = [
