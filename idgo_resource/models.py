@@ -401,7 +401,7 @@ class Store(AbstractResourceFile):
     @property
     def url(self):
         domain = settings.DOMAIN_NAME
-        path = reverse('resource:directory_storage', kwargs={
+        path = reverse('idgo_resource:directory_storage', kwargs={
             'dataset_id': self.resource.dataset.pk,
             'resource_id': self.resource.pk
         })
