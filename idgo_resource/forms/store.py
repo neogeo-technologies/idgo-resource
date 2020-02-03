@@ -166,7 +166,7 @@ class BaseResourceStoreForm(ModelResourceForm):
     def set_file(self, data):
         try:
             RelatedModel = apps.get_model(
-                app_label='resource', model_name=data.get('related_model'))
+                app_label='idgo_resource', model_name=data.get('related_model'))
             instance = RelatedModel.objects.get(pk=data.get('related_pk'))
             instance.resource = self.instance
         except RelatedModel.DoesNotExist:
