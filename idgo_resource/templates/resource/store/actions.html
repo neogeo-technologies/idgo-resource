@@ -1,8 +1,8 @@
 <div class="buttons-on-the-right-side">
   <button type="button" class="btn btn-danger left" data-toggle="modal" data-target="#modal-resource-delete">Supprimer</button>
   <a class="btn btn-default" href="{{ resource.ckan_url }}" target="_blank">Voir la fiche CKAN</a>
-  <a class="btn btn-primary" href="{% url 'resource:update_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">Mettre à jour le répertoire</a>
-  <a class="btn btn-primary" href="{% url 'resource:edit_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">Éditer les informations</a>
+  <a class="btn btn-primary" href="{% url 'idgo_resource:update_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">Mettre à jour le répertoire</a>
+  <a class="btn btn-primary" href="{% url 'idgo_resource:edit_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">Éditer les informations</a>
 </div>
 
 <div class="modal fade" id="modal-resource-delete" tabindex="-1" role="dialog" aria-labelledby="ModalResourceDelete">
@@ -23,7 +23,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default left" data-dismiss="modal">Annuler</button>
-        <a id="button-resource-delete" class="btn btn-danger disabled" disable href="{% url 'resource:delete_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">
+        <a id="button-resource-delete" class="btn btn-danger disabled" disable href="{% url 'idgo_resource:delete_resource_store' dataset_id=dataset.pk resource_id=resource.pk %}">
           Oui, supprimer définitivement cette ressource
         </a>
       </div>

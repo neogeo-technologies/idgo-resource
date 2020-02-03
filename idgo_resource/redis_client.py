@@ -20,7 +20,7 @@ from uuid import uuid4
 from django.conf import settings
 import redis
 
-from resource import logger
+from idgo_resource import logger
 
 
 REDIS_EXPIRATION = 60*60

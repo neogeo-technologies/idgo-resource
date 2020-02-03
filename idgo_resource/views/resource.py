@@ -26,7 +26,7 @@ from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 from idgo_admin.shortcuts import user_and_profile
-from resource.models import Resource
+from idgo_resource.models import Resource
 
 
 decorators = [csrf_exempt, login_required(login_url=settings.LOGIN_URL)]

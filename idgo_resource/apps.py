@@ -18,5 +18,5 @@ from django.apps import AppConfig
 
 
 class ResourceConfig(AppConfig):
-    name = 'resource'
-    verbose_name = 'Ressource'
+    name = 'idgo_resource'
+    verbose_name = 'IDGO Ressource'

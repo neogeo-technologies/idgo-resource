@@ -12,7 +12,7 @@
 
 {% block main_content %}
 {% include "idgo_admin/alert_messages.html" %}
-<form method="post" action="{% url 'resource:edit_resource_store' dataset_id=dataset.id resource_id=resource.id%}" class="well">
+<form method="post" action="{% url 'idgo_resource:edit_resource_store' dataset_id=dataset.id resource_id=resource.id%}" class="well">
   {% csrf_token %}
   <div class="row">
     <div class="col-xs-12">

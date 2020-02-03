@@ -14,16 +14,16 @@
 # under the License.
 
 
-from resource.views.go_for import GoForResource
-from resource.views.resource import RedirectResource
-from resource.views.store import CreateResourceStore
-from resource.views.store import EditResourceStore
-from resource.views.store import EmitResourceStore
-from resource.views.store import DeleteResourceStore
-from resource.views.store import ShowDirectoryStorage
-from resource.views.store import ShowDirectoryStorageGlob
-from resource.views.store import ShowResourceStore
-from resource.views.store import UpdateResourceStore
+from idgo_resource.views.go_for import GoForResource
+from idgo_resource.views.resource import RedirectResource
+from idgo_resource.views.store import CreateResourceStore
+from idgo_resource.views.store import EditResourceStore
+from idgo_resource.views.store import EmitResourceStore
+from idgo_resource.views.store import DeleteResourceStore
+from idgo_resource.views.store import ShowDirectoryStorage
+from idgo_resource.views.store import ShowDirectoryStorageGlob
+from idgo_resource.views.store import ShowResourceStore
+from idgo_resource.views.store import UpdateResourceStore
 
 
 __all__ = [

@@ -12,7 +12,7 @@
 {% endblock breadcrumb_content %}
 
 {% block main_content %}
-<form method="post" action="{% url 'resource:emit_resource_store' dataset_id=dataset.id %}" enctype="multipart/form-data" class="well">
+<form method="post" action="{% url 'idgo_resource:emit_resource_store' dataset_id=dataset.id %}" enctype="multipart/form-data" class="well">
   {% csrf_token %}
   {% bootstrap_field form.file_path %}
   <div class="buttons-on-the-right-side">

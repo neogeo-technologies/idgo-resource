@@ -35,7 +35,7 @@ from idgo_admin.ckan_module import CkanHandler
 from idgo_admin.ckan_module import CkanUserHandler
 from idgo_admin.managers import DefaultResourceManager
 from idgo_admin.utils import three_suspension_points
-from resource import logger
+from idgo_resource import logger
 
 
 try:
@@ -272,7 +272,7 @@ class AbstractResourceRelation(models.Model):
         abstract = True
 
     resource = models.OneToOneField(
-        'resource.Resource',
+        'idgo_resource.Resource',
         on_delete=models.CASCADE,
         blank=True,
         null=True
