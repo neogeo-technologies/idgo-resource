@@ -60,6 +60,7 @@ DIRECTORY_STORAGE = settings.DIRECTORY_STORAGE
 DOMAIN = settings.DOMAIN_NAME
 LOGIN_URL = settings.LOGIN_URL
 
+mime = magic.Magic(mime=True)
 
 decorators = [csrf_exempt, login_required(login_url=LOGIN_URL)]
 
@@ -381,8 +382,8 @@ class ShowDirectoryStorage(ShowDirectory, View):
 
     def get(self, request, dataset_id=None, resource_id=None, *args, **kwargs):
 
-        get_object_or_404(Dataset, id=dataset_id)
-        get_object_or_404(Resource, id=resource_id)
+        dataset = get_object_or_404(Dataset, id=dataset_id)
+        resource = get_object_or_404(Resource, id=resource_id)
 
         self.location = os.path.join(DIRECTORY_STORAGE, str(resource.pk))
         base_url = request.build_absolute_uri()
@@ -420,8 +421,7 @@ class ShowDirectoryStorageGlob(ShowDirectory, View):
             raise Http404()
 
         filename = str(pathlib.Path(self.location).joinpath(glob_path))
-        content_type = MimeTypes().guess_type(str(filename))[0] \
-            or self.mime.from_file(str(filename))
+        content_type = MimeTypes().guess_type(str(filename))[0] or mime.from_file(str(filename))
 
         with open(filename, 'rb') as data:
             return HttpResponse(data, content_type=content_type)
@@ -436,9 +436,7 @@ def iterate(location, base_url=None):
         if not filename.is_dir():
             href = reduce(
                 urljoin, [DOMAIN, base_url, str(filename.relative_to(location))])
-            mime = magic.Magic(mime=True)
-            content_type = MimeTypes().guess_type(str(filename))[0] \
-                or mime.from_file(str(filename))
+            content_type = MimeTypes().guess_type(str(filename))[0] or mime.from_file(str(filename))
             size = filename.stat().st_size
 
             files.append({
