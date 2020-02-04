@@ -57,8 +57,25 @@ class RedirectResource(View):
             kwargs['id'] = id
         resource = get_object_or_404(Resource, **kwargs)
 
-        if hasattr(resource, 'store'):
-            namespace = 'resource:show_resource_store'
+        if hasattr(resource, 'upload'):
+            # namespace = 'idgo_resource:show_resource_upload'
+            raise NotImplementedError
+
+        elif hasattr(resource, 'download'):
+            # namespace = 'idgo_resource:show_resource_download'
+            raise NotImplementedError
+
+        elif hasattr(resource, 'store'):
+            namespace = 'idgo_resource:show_resource_store'
+
+        elif hasattr(resource, 'ftp'):
+            # namespace = 'idgo_resource:show_resource_ftp'
+            raise NotImplementedError
+
+        elif hasattr(resource, 'href'):
+            # namespace = 'idgo_resource:show_resource_href'
+            raise NotImplementedError
+
         else:
             raise Http404()
 
