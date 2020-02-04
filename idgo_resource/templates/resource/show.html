@@ -3,26 +3,26 @@
   <table class="table table-bordered table-condensed">
     <thead>
       <tr>
-        <th>Titre</th>
-        <th>{{ resource.title }}</th>
+        <th class="col-xs-4 col-sm-3 col-md-2 col-lg-2">Titre</th>
+        <th class="col-xs-8 col-sm-9 col-md-10 col-lg-10">{{ resource.title }}</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <th>Description</th>
-        <td>{{ resource.description|default:"<em>Néant</em>" }}</td>
+        <th class="col-xs-4 col-sm-3 col-md-2 col-lg-2">Description</th>
+        <td class="col-xs-8 col-sm-9 col-md-10 col-lg-10">{{ resource.description|default:"" }}</td>
       </tr>
       <tr>
-        <th>Langue</th>
-        <td>{{ resource.language }}</td>
+        <th class="col-xs-4 col-sm-3 col-md-2 col-lg-2">Langue</th>
+        <td class="col-xs-8 col-sm-9 col-md-10 col-lg-10">{{ resource.get_language_display }}</td>
       </tr>
       <tr>
-        <th>Type de resource</th>
-        <td>{{ resource.resource_type }}</td>
+        <th class="col-xs-4 col-sm-3 col-md-2 col-lg-2">Type de resource</th>
+        <td class="col-xs-8 col-sm-9 col-md-10 col-lg-10">{{ resource.get_resource_type_display }}</td>
       </tr>
       <tr>
-        <th>Format du fichier téléversé</th>
-        <td>{{ resource.format_type }}</td>
+        <th class="col-xs-4 col-sm-3 col-md-2 col-lg-2">Format</th>
+        <td class="col-xs-8 col-sm-9 col-md-10 col-lg-10">{{ resource.format_type.description }}</td>
       </tr>
     </tbody>
   </table>

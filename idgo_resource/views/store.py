@@ -98,7 +98,7 @@ class ResourceStoreBaseView(View):
             initial={
                 'title': title,
                 'language': 'french',
-                'resource_type': 'annexe',
+                'resource_type': 'service',
                 'format_type': format_type,
                 'redis_key': redis_key,
                 'description': resource.description if resource else ''
@@ -142,6 +142,9 @@ class EmitResourceStore(ResourceStoreBaseView):
         redis_key = self.redis_create_key(user, instance_store, instance_store.pk, content_type)
 
         resource_form = self.init_resource_form(instance_store, title, content_type, redis_key)
+
+        msg = 'Veuillez vérifier les informations pré-remplies ci-dessous avant de la valider la création.'
+        messages.info(request, msg)
 
         context = {
             'form': resource_form,
@@ -199,6 +202,9 @@ class UpdateResourceStore(ResourceStoreBaseView):
         redis_key = self.redis_create_key(user, updated_store, updated_store.pk, content_type)
 
         resource_form = self.init_resource_form(updated_store, title, content_type, redis_key, resource)
+
+        msg = 'Veuillez vérifier les informations pré-remplies ci-dessous avant de la valider la création.'
+        messages.info(request, msg)
 
         context = {
             'form': resource_form,
