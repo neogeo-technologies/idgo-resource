@@ -345,8 +345,8 @@ class DeleteResourceStore(View):
             resource.store.delete()
         resource.delete()
 
-        kwargs = {'dataset_id': dataset.id}
-        url = reverse('idgo_resource:go_for_resource', kwargs=kwargs)
+        kwargs = {'id': dataset.id}
+        url = reverse('idgo_admin:dataset_editor', kwargs=kwargs)
         return HttpResponseRedirect(url)
 
 
