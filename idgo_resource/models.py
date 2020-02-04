@@ -435,7 +435,7 @@ def auto_delete_file_on_store_delete(sender, instance, **kwargs):
             os.remove(instance.file_path.path)
 
     if hasattr(instance, 'resource'):
-        dir = os.path.join(settings.DIRECTORY_STORAGE, instance.resource.pk)
+        dir = os.path.join(settings.DIRECTORY_STORAGE, str(instance.resource.pk))
         try:
             shutil.rmtree(dir)
         except FileNotFoundError as e:
