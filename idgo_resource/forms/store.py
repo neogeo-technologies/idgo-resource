@@ -83,7 +83,7 @@ class ModelResourceStoreForm(forms.ModelForm):
             attrs={
                 'value': '',  # IMPORTANT
                 'max_size_info': DOWNLOAD_SIZE_LIMIT,
-                'accept': ', '.join(ACCEPT_RESOURCE_FORMATS),
+                # 'accept': ', '.join(ACCEPT_RESOURCE_FORMATS),
             },
         ),
     )
