@@ -124,7 +124,7 @@ class BaseResourceStoreForm(ModelResourceForm):
         super().__init__(*args, **kwargs)
 
         self.fields['format_type'].queryset = \
-            ResourceFormats.objects.filter(extension__in=EXTENSIONS).order_by('extension')
+            ResourceFormats.objects.filter(extension__in=EXTENSIONS, is_gis_format=False).order_by('extension')
 
     def clean(self):
         redis_key = self.cleaned_data.get('redis_key')
