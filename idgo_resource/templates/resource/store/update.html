@@ -20,7 +20,9 @@
   {% bootstrap_field form.file_path %}
   <div class="buttons-on-the-right-side">
     <a class="btn btn-default" href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources">Annuler</a>
-    <button type="submit" class="btn btn-primary">Enregistrer le fichier</button>
+    <button type="submit" class="btn btn-primary">Envoyer le fichier</button>
   </div>
+  <hr />
+  <small>* Seuls les fichiers suivants sont acceptés : <strong>{{ extensions|join:"</strong>, <strong>" }}</strong>.</small>
 </form>
 {% endblock main_content %}

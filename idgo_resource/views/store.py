@@ -113,8 +113,10 @@ class EmitResourceStore(ResourceStoreBaseView):
     def get(self, request, dataset_id=None, *args, **kwargs):
         user, profile = user_and_profile(request)
         dataset = get_object_or_404_extended(Dataset, user, include={'id': dataset_id})
+        form = EmitResourceStoreForm()
         context = {
-            'form': EmitResourceStoreForm(),
+            'form': form,
+            'extensions': form.extensions,
             'dataset': dataset,
         }
         return render_with_info_profile(request, 'resource/store/create.html', context)
@@ -127,10 +129,7 @@ class EmitResourceStore(ResourceStoreBaseView):
         form = EmitResourceStoreForm(data=request.POST, files=request.FILES)
 
         if not form.is_valid():
-            context = {
-                'form': EmitResourceStoreForm(),
-                'dataset': dataset
-            }
+            context = {'form': form, 'dataset': dataset}
             return render_with_info_profile(request, 'resource/store/create.html', context)
 
         instance_store = form.save()
@@ -143,7 +142,7 @@ class EmitResourceStore(ResourceStoreBaseView):
 
         resource_form = self.init_resource_form(instance_store, title, content_type, redis_key)
 
-        msg = 'Veuillez vérifier les informations pré-remplies ci-dessous avant de la valider la création.'
+        msg = "Veuillez vérifier les informations pré-remplies ci-dessous avant de la valider la création."
         messages.info(request, msg)
 
         context = {
@@ -179,16 +178,15 @@ class UpdateResourceStore(ResourceStoreBaseView):
         dataset = get_object_or_404_extended(Dataset, user, include={'id': dataset_id})
         resource = get_object_or_404_extended(Resource, user, include={'id': resource_id})
 
-        old_store = resource.store
-        # store = resource.store if hasattr(resource, 'store') else None
-        form = UpdateResourceStoreForm(data=request.POST, files=request.FILES, instance=old_store)
+        store = resource.store
+        form = UpdateResourceStoreForm(data=request.POST, files=request.FILES, instance=store)
 
         if not form.is_valid():
             context = {
-                'form': EmitResourceStoreForm(),
+                'form': form,
                 'dataset': dataset,
                 'resource': resource,
-                'store': old_store,
+                'store': store,
             }
             return render_with_info_profile(request, 'resource/store/update.html', context)
 
@@ -203,7 +201,7 @@ class UpdateResourceStore(ResourceStoreBaseView):
 
         resource_form = self.init_resource_form(updated_store, title, content_type, redis_key, resource)
 
-        msg = 'Veuillez vérifier les informations pré-remplies ci-dessous avant de la valider la création.'
+        msg = "Veuillez vérifier les informations pré-remplies ci-dessous avant de la valider la création."
         messages.info(request, msg)
 
         context = {

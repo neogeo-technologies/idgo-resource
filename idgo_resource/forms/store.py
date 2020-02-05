@@ -34,34 +34,25 @@ from idgo_resource.models import Store
 from idgo_resource.redis_client import Handler as RedisHandler
 
 
-DOWNLOAD_SIZE_LIMIT = getattr(settings, 'RESOURCE_STORE_DOWNLOAD_SIZE_LIMIT', 104857600)  # Default:100Mio
-EXTENSIONS = getattr(settings, 'RESOURCE_STORE_EXTENSIONS', ['zip', 'rar', '7z', 'tar', 'tar.gz'])
 DIRECTORY_STORAGE = settings.DIRECTORY_STORAGE
+
+DOWNLOAD_SIZE_LIMIT = getattr(settings, 'RESOURCE_STORE_DOWNLOAD_SIZE_LIMIT', 104857600)  # Default:100Mio
+EXTENSIONS = getattr(settings, 'RESOURCE_STORE_EXTENSIONS', ['zip'])
+try:
+    filter = {'extension__in': EXTENSIONS, 'is_gis_format': False}
+    RESOURCE_FORMATS = ResourceFormats.objects.filter(**filter).order_by('extension')
+except:
+    RESOURCE_FORMATS = []
 
 
 def file_size(value):
     size_limit = DOWNLOAD_SIZE_LIMIT
     if value.size > size_limit:
         message = (
-            'Le fichier {name} ({size}) dépasse la '
-            'limite de taille autorisée : {max_size}.'
+            "Le fichier {name} ({size}) dépasse la limite de taille autorisée : {max_size}."
         ).format(
-            name=value.name,
-            size=readable_file_size(value.size),
-            max_size=readable_file_size(size_limit)
-        )
+            name=value.name, size=readable_file_size(value.size), max_size=readable_file_size(size_limit))
         raise ValidationError(message)
-
-
-try:
-    mimetype = []
-    for item in ResourceFormats.objects.filter(extension__in=EXTENSIONS):
-        if item.mimetype:
-            mimetype.append(item.mimetype)
-except Exception:
-    ACCEPT_RESOURCE_FORMATS = []
-else:
-    ACCEPT_RESOURCE_FORMATS = list(set(reduce(iconcat, mimetype, [])))
 
 
 class ModelResourceStoreForm(forms.ModelForm):
@@ -77,32 +68,32 @@ class ModelResourceStoreForm(forms.ModelForm):
 
     file_path = forms.FileField(
         label="",  # Vide
-        required=True,
+        required=False,
         validators=[file_size],
         widget=CustomClearableFileInput(
             attrs={
-                'value': '',  # IMPORTANT
+                'value': '',
                 'max_size_info': DOWNLOAD_SIZE_LIMIT,
-                # 'accept': ', '.join(ACCEPT_RESOURCE_FORMATS),
+                # accept
             },
         ),
     )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.extensions = EXTENSIONS
+        self.mimetypes = list(set(reduce(iconcat, [item.mimetype for item in RESOURCE_FORMATS], [])))
+        self.fields['file_path'].widget.attrs['accept'] = ', '.join(self.mimetypes)
 
     def clean_file_path(self):
         # We check if a file has been uploaded
-        data = self.data.get('file_path')
-        if data == '':
-            raise forms.ValidationError('Ce champs ne peut être vide.')
+        file_path = self.cleaned_data.get('file_path')
+        if not file_path:
+            raise forms.ValidationError("Ce champs ne peut être vide.")
+        if file_path.content_type not in self.mimetypes:
+            raise forms.ValidationError("Le type MIME du fichier n'est pas autorisé.")
         # We send the verified file
-        return self.cleaned_data['file_path']
-
-    def clean(self):
-        # TODO: Vérifier si le type de fichier est autorisé
-        # TODO: Vérifier le contenu ??? (à voir plus tard)
-        return self.cleaned_data
+        return file_path
 
 
 class EmitResourceStoreForm(ModelResourceStoreForm):
@@ -112,19 +103,15 @@ class EmitResourceStoreForm(ModelResourceStoreForm):
 class UpdateResourceStoreForm(ModelResourceStoreForm):
 
     def __init__(self, *args, **kwargs):
+        kwargs['instance'].file_path = None
         super().__init__(*args, **kwargs)
-        self.fields['file_path'].widget.attrs['value'] = ''
-        # self.fields['file_path'].initial = ''
-        # self.fields['file_path'].widget.attrs['value'] = self.instance.get_file_url
 
 
 class BaseResourceStoreForm(ModelResourceForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-
-        self.fields['format_type'].queryset = \
-            ResourceFormats.objects.filter(extension__in=EXTENSIONS, is_gis_format=False).order_by('extension')
+        self.fields['format_type'].queryset = RESOURCE_FORMATS
 
     def clean(self):
         redis_key = self.cleaned_data.get('redis_key')
@@ -138,7 +125,7 @@ class BaseResourceStoreForm(ModelResourceForm):
                not os.path.getsize(self.filename) == file_size:
                 raise ValidationError(
                     (
-                        'Le fichier {name} semble perdu dans des profondeurs insondables.'
+                        "Le fichier {name} semble perdu dans des profondeurs insondables."
                     ).format(name=data['name'])
                 )
 
@@ -150,24 +137,33 @@ class BaseResourceStoreForm(ModelResourceForm):
             dataset = Dataset.objects.get(pk=data.get('dataset'))
         except Dataset.DoesNotExist():
             logger.error(
-                'Dataset not found: model Datatset - pk {}'.format(
-                    data.get('dataset'))
+                "Dataset not found: model Datatset - pk {}".format(data.get('dataset'))
             )
-            pass
         else:
             return dataset
 
-    def store_dir(self, data, flush=False):
-        if data.get('content_type') == 'application/zip':
-            with ZipFile(data.get('filename'), 'r') as zip_obj:
-                # Extract all the contents of zip file in different directory
-                store_path = '{}/{}'.format(DIRECTORY_STORAGE, self.instance.pk)
-                if flush and Path(store_path).exists():
-                    shutil.rmtree(store_path)
-                Path(store_path).mkdir(parents=True, exist_ok=True)
-                zip_obj.extractall(store_path)
+    def _unzip(self, filename, flush=False):
+        with ZipFile(filename, 'r') as zip_obj:
+            store_path = os.path.join(DIRECTORY_STORAGE, str(self.instance.pk))
+            if flush and Path(store_path).exists():
+                shutil.rmtree(store_path)
+            Path(store_path).mkdir(parents=True, exist_ok=True)
+            zip_obj.extractall(store_path)
 
-        # TODO: RAR, TAR, etc.
+    def store_directory(self, data, flush=False):
+
+        extensions = dict(
+            (item.extension, item.mimetype)
+            for item in self.fields['format_type'].queryset
+        )
+
+        for extension, mimetypes in extensions.items():
+            if data.get('content_type') in mimetypes:
+                if extension == 'zip':
+                    self._unzip(data.get('filename'), flush=flush)
+                else:
+                    # TODO
+                    raise NotImplementedError
 
     def set_file(self, data):
         try:
@@ -177,10 +173,10 @@ class BaseResourceStoreForm(ModelResourceForm):
             instance.resource = self.instance
         except RelatedModel.DoesNotExist:
             logger.error(
-                'Resource File not found: model {} - pk {}'.format(
-                    data.get('related_model'), data.get('related_pk'))
+                "Resource File not found: model {} - pk {}".format(
+                    data.get('related_model'), data.get('related_pk')
+                )
             )
-            pass
         else:
             instance.save()
 
@@ -197,7 +193,7 @@ class BaseResourceStoreForm(ModelResourceForm):
             data = json.loads(RedisHandler().retreive(redis_key))
             # Related instances handlers:
             self.set_file(data)
-            self.store_dir(data, flush=True)
+            self.store_directory(data, flush=True)
         return resource
 
 
