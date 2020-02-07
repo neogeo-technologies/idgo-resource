@@ -15,7 +15,7 @@
 
 
 default_app_config = 'idgo_resource.apps.ResourceConfig'
-__version__ = '0.1.0dev'
+__version__ = '0.1.0'
 
 
 import logging
