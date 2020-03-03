@@ -39,7 +39,7 @@ class Handler:
             kwargs.setdefault('host', settings.REDIS_HOST)
             kwargs.setdefault('port', settings.REDIS_PORT)
         except AttributeError:
-            logger.warning("REDIS settings are missing in this context.")
+            logger.warning("REDIS settings are missing in this context. Trying to connect with defaults values.")
             logger.warning("REDIS client try to connect with defaults host and port.")
         kwargs.setdefault('decode_responses', True)  # Oui decode moi tout
         self.client = redis.StrictRedis(**kwargs)
