@@ -15,9 +15,10 @@
 {% endblock breadcrumb_content %}
 
 {% block main_content %}
-<form method="post" action="{% url 'idgo_resource:update_resource_store' dataset_id=dataset.id resource_id=resource.id %}" enctype="multipart/form-data" class="well">
+<form method="post" action="{% url 'idgo_resource:update_resource_ftp' dataset_id=dataset.id resource_id=resource.id %}" enctype="multipart/form-data" class="well">
   {% csrf_token %}
   {% bootstrap_field form.file_path %}
+  <br />
   <div class="buttons-on-the-right-side">
     <a class="btn btn-default" href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources">Annuler</a>
     <button type="submit" class="btn btn-primary">Envoyer le fichier</button>

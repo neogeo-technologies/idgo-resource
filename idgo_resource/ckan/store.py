@@ -35,6 +35,8 @@ from idgo_admin.ckan_module import CkanUserHandler
 DIRECTORY_STORAGE = settings.DIRECTORY_STORAGE
 DOMAIN = settings.DOMAIN_NAME
 
+Mime = magic.Magic(mime=True)
+
 
 def iterate(location, base_url=None):
     files = []
@@ -42,9 +44,8 @@ def iterate(location, base_url=None):
         if not filename.is_dir():
             href = reduce(
                 urljoin, [DOMAIN, base_url, str(filename.relative_to(location))])
-            mime = magic.Magic(mime=True)
             content_type = MimeTypes().guess_type(str(filename))[0] \
-                or mime.from_file(str(filename))
+                or Mime.from_file(str(filename))
             size = filename.stat().st_size
 
             files.append({

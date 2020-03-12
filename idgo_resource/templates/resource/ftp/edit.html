@@ -12,7 +12,7 @@
 
 {% block main_content %}
 {% include "idgo_admin/alert_messages.html" %}
-<form method="post" action="{% url 'idgo_resource:edit_resource_store' dataset_id=dataset.id resource_id=resource.id%}" class="well">
+<form method="post" action="{% url 'idgo_resource:edit_resource_ftp' dataset_id=dataset.id resource_id=resource.id%}" class="well">
   {% csrf_token %}
   <div class="row">
     <div class="col-xs-12">
@@ -49,9 +49,12 @@
   <br />
   <div class="buttons-on-the-right-side">
     <a class="btn btn-default" href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources_store">Annuler</a>
-    <button type="submit" class="btn btn-default">Valider la modification</button>
+    <button type="submit" name="default" class="btn btn-default">Valider la modification</button>
   </div>
   <hr />
   <small>* Les champs marqués d'un astérisque sont obligatoires.</small>
 </form>
+<script>
+
+</script>
 {% endblock main_content %}

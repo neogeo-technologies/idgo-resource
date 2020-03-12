@@ -16,30 +16,44 @@
 
 from django.conf.urls import url
 
-from idgo_resource.views import CreateResourceStore
-from idgo_resource.views import DeleteResourceStore
-from idgo_resource.views import EditResourceStore
-from idgo_resource.views import EmitResourceStore
-from idgo_resource.views import GoForResource
+from idgo_resource.views import CreateResourceFtp
+from idgo_resource.views import CreateResourceUpload
+from idgo_resource.views import Dashboard
+from idgo_resource.views import DeleteResourceFtp
+from idgo_resource.views import DeleteResourceUpload
+from idgo_resource.views import EditResourceFtp
+from idgo_resource.views import EditResourceUpload
+from idgo_resource.views import EmitResourceFtp
+from idgo_resource.views import EmitResourceUpload
+from idgo_resource.views import NewResource
 from idgo_resource.views import RedirectResource
-from idgo_resource.views import ShowDirectoryStorage
-from idgo_resource.views import ShowDirectoryStorageGlob
-from idgo_resource.views import ShowResourceStore
-from idgo_resource.views import UpdateResourceStore
+from idgo_resource.views import ShowResourceFtp
+from idgo_resource.views import ShowResourceUpload
+from idgo_resource.views import UpdateResourceFtp
+from idgo_resource.views import UpdateResourceUpload
 
 
 urlpatterns = [
-    url('^dataset/(?P<dataset_id>(\d+))/-/resource/$', RedirectResource.as_view(), name='redirect_resource'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/new/$', GoForResource.as_view(), name='go_for_resource'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/dashboard/$', Dashboard.as_view(), name='dashboard'),
 
-    # Resource: Store
-    # ===============
-    url('^dataset/(?P<dataset_id>(\d+))/resource/new/store/$', EmitResourceStore.as_view(), name='emit_resource_store'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/new/store/create/$', CreateResourceStore.as_view(), name='create_resource_store'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/store/show/$', ShowResourceStore.as_view(), name='show_resource_store'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/store/edit/$', EditResourceStore.as_view(), name='edit_resource_store'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/store/update/$', UpdateResourceStore.as_view(), name='update_resource_store'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/store/delete/$', DeleteResourceStore.as_view(), name='delete_resource_store'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/store/directory/$', ShowDirectoryStorage.as_view(), name='directory_storage'),
-    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/store/directory/(?P<glob_path>(.+))/?$', ShowDirectoryStorageGlob.as_view(), name='directory_storage_glob'),
+    url('^dataset/(?P<dataset_id>(\d+))/-/resource/$', RedirectResource.as_view(), name='redirect_resource'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/new/$', NewResource.as_view(), name='new_resource'),
+
+    # Resource: Upload
+    # ================
+    url('^dataset/(?P<dataset_id>(\d+))/resource/new/upload/$', EmitResourceUpload.as_view(), name='emit_resource_upload'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/new/upload/create/$', CreateResourceUpload.as_view(), name='create_resource_upload'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/upload/show/$', ShowResourceUpload.as_view(), name='show_resource_upload'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/upload/edit/$', EditResourceUpload.as_view(), name='edit_resource_upload'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/upload/update/$', UpdateResourceUpload.as_view(), name='update_resource_upload'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/upload/delete/$', DeleteResourceUpload.as_view(), name='delete_resource_upload'),
+
+    # Resource: Ftp
+    # =============
+    url('^dataset/(?P<dataset_id>(\d+))/resource/new/ftp/$', EmitResourceFtp.as_view(), name='emit_resource_ftp'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/new/ftp/create/$', CreateResourceFtp.as_view(), name='create_resource_ftp'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/ftp/show/$', ShowResourceFtp.as_view(), name='show_resource_ftp'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/ftp/edit/$', EditResourceFtp.as_view(), name='edit_resource_ftp'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/ftp/update/$', UpdateResourceFtp.as_view(), name='update_resource_ftp'),
+    url('^dataset/(?P<dataset_id>(\d+))/resource/(?P<resource_id>(\d+))/ftp/delete/$', DeleteResourceFtp.as_view(), name='delete_resource_ftp'),
 ]

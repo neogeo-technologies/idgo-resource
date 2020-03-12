@@ -58,23 +58,19 @@ class RedirectResource(View):
         resource = get_object_or_404(Resource, **kwargs)
 
         if hasattr(resource, 'upload'):
-            # namespace = 'idgo_resource:show_resource_upload'
             raise NotImplementedError
-
         elif hasattr(resource, 'download'):
-            # namespace = 'idgo_resource:show_resource_download'
             raise NotImplementedError
-
-        elif hasattr(resource, 'store'):
-            namespace = 'idgo_resource:show_resource_store'
-
         elif hasattr(resource, 'ftp'):
-            # namespace = 'idgo_resource:show_resource_ftp'
+            raise NotImplementedError
+        elif hasattr(resource, 'href'):
             raise NotImplementedError
 
-        elif hasattr(resource, 'href'):
-            # namespace = 'idgo_resource:show_resource_href'
-            raise NotImplementedError
+        # Déplacer dans idgo-store
+        elif hasattr(resource, 'storeupload'):
+            namespace = 'idgo_store:show_resource_store_upload'
+        elif hasattr(resource, 'storeftp'):
+            namespace = 'idgo_store:show_resource_store_ftp'
 
         else:
             raise Http404()

@@ -14,14 +14,12 @@
 # under the License.
 
 
-from idgo_resource import __version__
 from pip._internal.req import parse_requirements
 from setuptools import find_packages
 from setuptools import setup
 
 
-version = str(__version__)
-
+version = '0.1.0'
 
 install_reqs = parse_requirements('./requirements.txt', session=False)
 reqs = [str(ir.req) for ir in install_reqs]

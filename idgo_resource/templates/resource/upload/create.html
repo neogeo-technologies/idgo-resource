@@ -1,0 +1,62 @@
+{% extends "idgo_admin/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block breadcrumb_content %}
+<ol class="breadcrumb">
+  {% include "resource/breadcrumb_base.html" %}
+  <li class="active">
+    Nouvelle ressource
+  </li>
+</ol>
+{% endblock breadcrumb_content %}
+
+{% block main_content %}
+{% include "idgo_admin/alert_messages.html" %}
+<form method="post" action="{% url 'idgo_resource:create_resource_upload' dataset_id=dataset.id %}" class="well">
+  {% csrf_token %}
+  <br>
+  <div class="row">
+    <div class="col-xs-12">
+      {% bootstrap_field form.title %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {% bootstrap_field form.description %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      {% bootstrap_field form.language %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      {% bootstrap_field form.resource_type %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      {% bootstrap_field form.format_type %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4 hidden">
+      {% bootstrap_field form.redis_key %}
+    </div>
+  </div>
+  <br />
+  <div class="buttons-on-the-right-side">
+    <a class="btn btn-default" href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources">Annuler</a>
+    <button type="submit" id="submit-create-upload" name="default" class="btn btn-default">Valider la création</button>
+  </div>
+  <hr />
+  <small>* Les champs marqués d'un astérisque sont obligatoires.</small>
+</form>
+<script>
+function onClick() {
+    document.getElementById('submit-create-upload').name.color = "red";
+}
+</script>
+{% endblock main_content %}

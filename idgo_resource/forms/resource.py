@@ -14,11 +14,14 @@
 # under the License.
 
 
+from django.apps import apps
 from django import forms
 from django.forms.models import ModelChoiceIterator
 
+from idgo_resource import logger
 from idgo_resource.models import Resource
 from idgo_resource.models import ResourceFormats
+from idgo_resource.redis_client import Handler as RedisHandler
 
 
 class FormatTypeSelect(forms.Select):
@@ -149,3 +152,34 @@ class ModelResourceForm(forms.ModelForm):
     )
 
     redis_key = forms.CharField(required=False)
+
+    def set_related_resource(self, model_name, pk, app_label='idgo_resource'):
+        try:
+            RelatedModel = apps.get_model(
+                app_label=app_label, model_name=model_name)
+            instance = RelatedModel.objects.get(pk=pk)
+            instance.resource = self.instance
+        except RelatedModel.DoesNotExist:
+            logger.error(
+                "Resource File not found: model {model} - pk {pk}".format(
+                    model=model_name, pk=pk))
+        else:
+            instance.save()
+
+    def save(self, *args, commit=True, **kwargs):
+        kwargs.setdefault('app_label', 'idgo_resource')
+
+        resource = self.instance
+        resource.dataset = kwargs['dataset']
+
+        resource.save()
+
+        redis_key = self.cleaned_data.get('redis_key')
+        if redis_key:
+            data = RedisHandler().update(redis_key, resource_pk=resource.pk)
+            model_name = data['related_model']
+            pk = data['related_pk']
+            app_label = kwargs['app_label']
+            self.set_related_resource(model_name, pk, app_label=app_label)
+
+        return resource

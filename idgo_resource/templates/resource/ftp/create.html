@@ -13,8 +13,9 @@
 
 {% block main_content %}
 {% include "idgo_admin/alert_messages.html" %}
-<form method="post" action="{% url 'idgo_resource:create_resource_store' dataset_id=dataset.id %}" class="well">
+<form method="post" action="{% url 'idgo_resource:create_resource_ftp' dataset_id=dataset.id %}" class="well">
   {% csrf_token %}
+  <br>
   <div class="row">
     <div class="col-xs-12">
       {% bootstrap_field form.title %}
@@ -48,9 +49,14 @@
   <br />
   <div class="buttons-on-the-right-side">
     <a class="btn btn-default" href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources">Annuler</a>
-    <button type="submit" class="btn btn-default">Valider la création</button>
+    <button type="submit" id="submit-create-ftp" name="default" class="btn btn-default">Valider la création</button>
   </div>
   <hr />
   <small>* Les champs marqués d'un astérisque sont obligatoires.</small>
 </form>
+<script>
+function onClick() {
+    document.getElementById('submit-create-ftp').name.color = "red";
+}
+</script>
 {% endblock main_content %}

@@ -15,18 +15,28 @@
 
 
 from idgo_resource.forms.resource import ModelResourceForm
-from idgo_resource.forms.store import CreateResourceStoreForm
-from idgo_resource.forms.store import EditResourceStoreForm
-from idgo_resource.forms.store import EmitResourceStoreForm
-from idgo_resource.forms.store import ModelResourceStoreForm
-from idgo_resource.forms.store import UpdateResourceStoreForm
+from idgo_resource.forms.ftp import CreateResourceFtpForm
+from idgo_resource.forms.ftp import EditResourceFtpForm
+from idgo_resource.forms.ftp import EmitResourceFtpForm
+from idgo_resource.forms.ftp import ModelResourceFtpForm
+from idgo_resource.forms.ftp import UpdateResourceFtpForm
+from idgo_resource.forms.upload import CreateResourceUploadForm
+from idgo_resource.forms.upload import EditResourceUploadForm
+from idgo_resource.forms.upload import EmitResourceUploadForm
+from idgo_resource.forms.upload import ModelResourceUploadForm
+from idgo_resource.forms.upload import UpdateResourceUploadForm
 
 
 __all__ = [
     ModelResourceForm,
-    ModelResourceStoreForm,
-    EmitResourceStoreForm,
-    UpdateResourceStoreForm,
-    CreateResourceStoreForm,
-    EditResourceStoreForm,
+    ModelResourceFtpForm,
+    ModelResourceUploadForm,
+    EmitResourceFtpForm,
+    EmitResourceUploadForm,
+    UpdateResourceFtpForm,
+    UpdateResourceUploadForm,
+    CreateResourceFtpForm,
+    CreateResourceUploadForm,
+    EditResourceFtpForm,
+    EditResourceUploadForm,
 ]
