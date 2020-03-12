@@ -62,7 +62,12 @@ class Handler:
         self.client.expire(key, REDIS_EXPIRATION)
         return key
 
+    def update(self, key, *args, **kwargs):
+        data = self.retreive(key)
+        data.update(**kwargs)
+        self.client.set(key, json.dumps(data))
+        return self.retreive(key)
+
     def retreive(self, key, *args, **kwargs):
         value = self.client.get(key)
-        return value
-
+        return json.loads(value)

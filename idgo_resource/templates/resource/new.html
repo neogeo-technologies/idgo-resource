@@ -1,0 +1,39 @@
+{% extends "idgo_admin/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block breadcrumb_content %}
+<ol class="breadcrumb">
+  {% include "resource/breadcrumb_base.html" %}
+  <li class="active">
+    Ajouter une ressource
+  </li>
+</ol>
+{% endblock breadcrumb_content %}
+
+{% block main_content %}
+<!-- <div class="row">
+  <div class="col-md-3">
+    <a role="button" class="btn btn-default btn-block btn-new-res-grid disabled" href="#">
+      Référencer une URL
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a role="button" class="btn btn-default btn-block btn-new-res-grid disabled" href="#">
+      Synchroniser une URL de donnnées
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a role="button" class="btn btn-default btn-block btn-new-res-grid" href="#">
+      Téléverser un fichier
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a role="button" class="btn btn-default btn-block btn-new-res-grid disabled" href="#">
+      Synchroniser un fichier depuis le FTP
+    </a>
+  </div>
+</div>
+<hr> -->
+{% for extension in RESOURCE_EXTENSIONS %}{% include extension.template with dataset_id=dataset.id %}{% endfor %}
+{% endblock main_content %}

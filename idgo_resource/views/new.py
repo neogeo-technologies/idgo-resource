@@ -45,23 +45,23 @@ from idgo_admin.shortcuts import user_and_profile
 #     FTP_UPLOADS_DIR = 'uploads'
 
 
+RESOURCE_APPS = settings.RESOURCE_APPS
+
 decorators = [csrf_exempt, login_required(login_url=settings.LOGIN_URL)]
 
 
 @method_decorator(decorators, name='dispatch')
-class GoForResource(View):
+class NewResource(View):
 
     def get(self, request, dataset_id=None, *args, **kwargs):
         user, profile = user_and_profile(request)
         dataset = get_object_or_404_extended(Dataset, user, include={'id': dataset_id})
-        context = {'dataset': dataset}
-        return render_with_info_profile(request, 'resource/go_for.html', context)
 
-    # def post(self, request, dataset_id=None, *args, **kwargs):
-    #     # redirect to resource children app:
-    #     app = request.POST.get('app', request.GET.get('app'))
-    #     if app:
-    #         return redirect(self.resource_router(dataset_id, app, action='create'))
+        context = {
+            'dataset': dataset,
+        }
+
+        return render_with_info_profile(request, 'resource/new.html', context)
 
 
 # @method_decorator(decorators, name='dispatch')

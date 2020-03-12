@@ -14,27 +14,37 @@
 # under the License.
 
 
-from idgo_resource.views.go_for import GoForResource
+from idgo_resource.views.dashboard import Dashboard
+from idgo_resource.views.ftp import CreateResourceFtp
+from idgo_resource.views.ftp import EditResourceFtp
+from idgo_resource.views.ftp import EmitResourceFtp
+from idgo_resource.views.ftp import DeleteResourceFtp
+from idgo_resource.views.ftp import ShowResourceFtp
+from idgo_resource.views.ftp import UpdateResourceFtp
+from idgo_resource.views.new import NewResource
 from idgo_resource.views.resource import RedirectResource
-from idgo_resource.views.store import CreateResourceStore
-from idgo_resource.views.store import EditResourceStore
-from idgo_resource.views.store import EmitResourceStore
-from idgo_resource.views.store import DeleteResourceStore
-from idgo_resource.views.store import ShowDirectoryStorage
-from idgo_resource.views.store import ShowDirectoryStorageGlob
-from idgo_resource.views.store import ShowResourceStore
-from idgo_resource.views.store import UpdateResourceStore
+from idgo_resource.views.upload import CreateResourceUpload
+from idgo_resource.views.upload import EditResourceUpload
+from idgo_resource.views.upload import EmitResourceUpload
+from idgo_resource.views.upload import DeleteResourceUpload
+from idgo_resource.views.upload import ShowResourceUpload
+from idgo_resource.views.upload import UpdateResourceUpload
 
 
 __all__ = [
-    CreateResourceStore,
-    EditResourceStore,
-    EmitResourceStore,
-    DeleteResourceStore,
-    GoForResource,
+    CreateResourceFtp,
+    CreateResourceUpload,
+    Dashboard,
+    DeleteResourceFtp,
+    DeleteResourceUpload,
+    EditResourceFtp,
+    EditResourceUpload,
+    EmitResourceFtp,
+    EmitResourceUpload,
+    NewResource,
     RedirectResource,
-    ShowDirectoryStorage,
-    ShowDirectoryStorageGlob,
-    ShowResourceStore,
-    UpdateResourceStore,
+    ShowResourceFtp,
+    ShowResourceUpload,
+    UpdateResourceFtp,
+    UpdateResourceUpload,
 ]

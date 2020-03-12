@@ -14,24 +14,16 @@
 # under the License.
 
 
-import os
-import importlib
-
-from celery import Celery
-from django.apps import AppConfig
+from celery.signals import before_task_publish
+from celery.utils.log import get_task_logger
 
 
-class ResourceConfig(AppConfig):
-    name = 'idgo_resource'
-    verbose_name = 'IDGO Ressource'
+from idgo_resource.apps import app as celery_app
 
 
-django_config_spec = importlib.util.find_spec("django_config")
-if django_config_spec:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_config.settings')
-else:
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+logger = get_task_logger(__name__)
 
-app = Celery('idgo_resource')
-app.config_from_object('django.conf:settings', namespace='CELERY')
-# app.autodiscover_tasks()
+
+@before_task_publish.connect
+def on_beforehand(headers=None, body=None, sender=None, **kwargs):
+    pass

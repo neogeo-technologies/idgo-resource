@@ -1,0 +1,17 @@
+{% extends "idgo_admin/base.html" %}
+
+{% load bootstrap3 %}
+
+{% block breadcrumb_content %}
+<ol class="breadcrumb">
+  {% include "resource/breadcrumb_base.html" %}
+  <li class="active">
+    Ajouter une ressource
+  </li>
+</ol>
+{% endblock breadcrumb_content %}
+
+{% block main_content %}
+{% include "idgo_admin/alert_messages.html" %}
+<span>Super Gut!</span>
+{% endblock main_content %}

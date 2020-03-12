@@ -13,14 +13,24 @@
 
 {% block main_content %}
 {% include "idgo_admin/alert_messages.html" %}
-<form method="post" action="{% url 'idgo_resource:emit_resource_store' dataset_id=dataset.id %}" enctype="multipart/form-data" class="well">
+<form method="post" action="{% url 'idgo_resource:emit_resource_upload' dataset_id=dataset.id %}" enctype="multipart/form-data" class="well">
   {% csrf_token %}
-  {% bootstrap_field form.file_path %}
+  <br />
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      {% bootstrap_field form.file_path %}
+    </div>
+  </div>
+  <br />
   <div class="buttons-on-the-right-side">
     <a class="btn btn-default" href="{% url 'idgo_admin:dataset' %}?id={{ dataset.id }}#resources">Annuler</a>
     <button type="submit" class="btn btn-primary">Envoyer le fichier</button>
   </div>
   <hr />
-  <small>* Seuls les fichiers suivants sont acceptés : <strong>{{ extensions|join:"</strong>, <strong>" }}</strong>.</small>
+  <div class="row">
+    <div class="col-md-10">
+      <small>* Seuls les fichiers suivants sont acceptés : <strong>{{ extensions|join:"</strong>, <strong>" }}</strong>.</small>
+    </div>
+  </div>
 </form>
 {% endblock main_content %}
