@@ -46,4 +46,4 @@ setup(
     ],
     packages=find_packages(where='.'),
     install_requires=reqs,
-    )
+)
